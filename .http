@@ -1,0 +1,77 @@
+# 接口和Content-Type不能换行
+@createdAt = {{$datetime iso8601}}
+
+// 注册用户
+POST http://localhost:3333/sys/registry
+Content-Type: application/json
+
+{
+  "username": "jmin",
+  "password": "jmin",
+  "email": "jmin@example.com",
+  "code": 33
+}
+
+###
+// 用户登录
+POST http://localhost:3333/sys/login
+Content-Type: application/json
+
+{
+  "username": "jmin",
+  "password": "jmin",
+  "code": 33
+}
+
+###
+
+// 查询用户
+GET http://localhost:3333/user/list?page=1&pageSize=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+
+
+###
+
+// 更新用户
+PATCH http://localhost:3333/user/edit
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+
+{
+  "id": 4,
+  "username": "Minnie",
+  "email": "Minie@example.com"
+}
+
+### 
+
+// 删除用户
+DELETE http://localhost:3333/user/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6MSwiaWF0IjoxNzExNDY2NDk4LCJleHAiOjE3MTIwNzEyOTh9.iL8aE-aktWr95X2ApALjJ6P52ZTcHXLMl-Md5JQs45g
+
+###
+// 创建角色
+POST http://localhost:3333/role/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+Content-Type: application/json
+
+{
+  "name": "管理员",
+  "desc": "我是管理员",
+  "permissions": [1,2,3]
+}
+
+
+###
+// 删除角色
+DELETE  http://localhost:3333/role/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+
+
+
+###
+// 获取用户功能权限列表
+GET   http://localhost:3333/permission/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+
+
