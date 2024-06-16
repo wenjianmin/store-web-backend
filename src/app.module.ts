@@ -10,32 +10,41 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpExceptionsFilter } from './common/http-exceptions.filter';
 import { ResponseInterceptor } from './common/response.interceptor';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { RoleAuthGuard } from './auth/role-auth.guard';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { ActivityModule } from './activity/activity.module';
+import { StaticModule } from './static.module';
 
 @Module({
   imports: [
+    StaticModule,
     UserModule,
     SysModule,
     LoggerModule,
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'jminjmin',
-      database: 'store_web_project',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      autoLoadEntities: true,
-      // 生产环境中禁止开启，应该使用数据迁移
-      synchronize: true
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        return {
+          type: 'mysql',
+          host: config.get<string>('MYSQL_HOST'),
+          port: config.get<number>('MYSQL_PORT'),
+          username: config.get<string>('MYSQL_USER'),
+          password: config.get<string>('MYSQL_PASSWORD'),
+          database: config.get<string>('MYSQL_DATABASE'),
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          charset: 'utf8mb4',
+          autoLoadEntities: true,
+          // 生产环境中禁止开启，应该使用数据迁移
+          synchronize: true
+        }
+      }
     }),
     ConfigModule.forRoot({
+      envFilePath: process.env.NODE_ENV === 'docker' ? '.env.docker' : process.env.NODE_ENV === 'production' ? '.env.production' : '.env',
       isGlobal: true,
     }),
     RoleModule,
@@ -63,10 +72,10 @@ import { ActivityModule } from './activity/activity.module';
       useClass: JwtAuthGuard,
     },
     // 应用接口权限验证守卫
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RoleAuthGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: RoleAuthGuard,
+    },
   ],
 })
 export class AppModule implements NestModule{

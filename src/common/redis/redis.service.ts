@@ -14,12 +14,12 @@ export class RedisService {
     return await this.client.get(redisKey)
   }
 
-  async set(redisKey: string, value: string, seconds?: number): Promise<string> {
+  async set(redisKey: string, value: string | number, seconds?: number): Promise<string> {
     const options =  seconds ? { EX: seconds } : {}
     return await this.client.set(redisKey, value, options)
   }
-  async hSet(redisKey: string, value: Record<string, string | number | boolean>): Promise<number> {
-    const newValue = Object.entries(value).flat().map(item => item.toString())
+  async hSet(redisKey: string, value: Record<string, string | number | boolean | Date>): Promise<number> {
+    const newValue = Object.entries(value).flat().map(item => String(item))
     return await this.client.hSet(redisKey, newValue)
   }
 

@@ -19,21 +19,6 @@ export class PermissionController {
    * @returns 返回权限列表
    */
   getPermList(@Req() req) {
-    return this.permissionService.getPermApiList(req.user);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.permissionService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePermissionDto: UpdatePermissionDto) {
-    return this.permissionService.update(+id, updatePermissionDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.permissionService.remove(+id);
+    return this.permissionService.getPermMenuList(req.user);
   }
 }

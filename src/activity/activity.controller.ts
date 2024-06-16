@@ -1,20 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query } from '@nestjs/common';
 import { ActivityService } from './activity.service';
 import { CreateActivityDto } from './dto/create-activity.dto';
 import { UpdateActivityDto } from './dto/update-activity.dto';
+import { ActivityListDto } from './dto/activity-list.dto';
 
 @Controller('activity')
 export class ActivityController {
   constructor(private readonly activityService: ActivityService) {}
 
-  @Post()
-  create(@Body() createActivityDto: CreateActivityDto) {
-    return this.activityService.create(createActivityDto);
+  @Post('create')
+  create(@Body() createActivityDto: CreateActivityDto, @Req() req) {
+    return this.activityService.create(createActivityDto, req.user);
   }
 
-  @Get()
-  findAll() {
-    return this.activityService.findAll();
+  @Get('list')
+  getActList(@Query() actListDto: ActivityListDto) {
+    return this.activityService.getActList(actListDto);
   }
 
   @Get(':id')
@@ -22,13 +23,13 @@ export class ActivityController {
     return this.activityService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateActivityDto: UpdateActivityDto) {
-    return this.activityService.update(+id, updateActivityDto);
+  @Patch('edit')
+  update(@Body() updateActivityDto: UpdateActivityDto) {
+    return this.activityService.update(updateActivityDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.activityService.remove(+id);
+  @Get('delete/:id')
+  delete(@Param('id') id: string ) {
+    return this.activityService.delete(+id);
   }
 }

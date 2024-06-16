@@ -33,8 +33,8 @@ Response: ${
     this.loggger.error(logFormat, 'HttpException filter ');
     response.status(status).json({
       code: status,
-      success: 'false',
-      error: exceptionResponse?.message || exception.message,
+      success: false,
+      message: exceptionResponse?.message || exception.message,
       type: `${status >= HttpStatus.INTERNAL_SERVER_ERROR ? 'Service Error' : 'Client Error'}`,
     });
   }

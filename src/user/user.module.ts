@@ -8,11 +8,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { AuthModule } from 'src/auth/auth.module';
 import { UserRoleEntity } from './entities/user-role.entity';
+import { MailService } from 'src/common/mail/mail.service';
+import { PermissionEntity } from 'src/permission/entities/permission.entity';
 
 @Module({
   imports: [
     RedisModule,
-    TypeOrmModule.forFeature([UserEntity, UserRoleEntity]),
+    TypeOrmModule.forFeature([UserEntity, UserRoleEntity, PermissionEntity]),
     forwardRef(() => AuthModule),
     // 新增jwt模块
     JwtModule.registerAsync({
@@ -30,7 +32,7 @@ import { UserRoleEntity } from './entities/user-role.entity';
     }), 
   ],
   controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService, MailService],
   exports: [UserService]
 })
 export class UserModule {}

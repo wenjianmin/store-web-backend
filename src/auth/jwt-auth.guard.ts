@@ -1,4 +1,4 @@
-import { ExecutionContext, ForbiddenException, Injectable } from '@nestjs/common';
+import { ExecutionContext, ForbiddenException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { ALLOW_NO_TOKEN } from 'src/common/decorators/token.decorator';
@@ -20,10 +20,10 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     // 验证用户是否登录
     const req = ctx.switchToHttp().getRequest()
     const access_token = req.get('Authorization')
-    if (!access_token) throw new ForbiddenException('您还未登录，请先登录后使用')
+    if (!access_token) throw new HttpException('您还未登录，请先登录后使用', HttpStatus.UNAUTHORIZED)
     const userId = this.userService.verifyToken(access_token)
     // 判断是否登录过期
-    if (!userId) throw new ForbiddenException('登录过期，请重新登录')
+    if (!userId) throw new HttpException('登录过期，请重新登录', HttpStatus.UNAUTHORIZED)
     return super.canActivate(ctx) as Promise<boolean>
   }
 }

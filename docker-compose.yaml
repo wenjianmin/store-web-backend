@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  
+  servers:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - 3333:3333
+    networks:
+      - nest-net
+    volumes:
+      - upload:/upload
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    container_name: mysql
+    image: mysql:8
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=jminjmin
+      - MYSQL_DATABASE=store_web_project
+    networks:
+      - nest-net
+    volumes:
+      - mysql:/var/lib/mysql
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    networks:
+      - nest-net
+    volumes:
+      - redis:/data
+
+networks:
+  nest-net:
+    driver: bridge
+
+volumes:
+  mysql:
+  redis:
+  upload:

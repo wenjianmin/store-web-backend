@@ -4,5 +4,7 @@ export const enum RedisKeyPrefix {
   USER_ROLE = 'user:role:',
   PRODUCT_INFO = 'product:info:',
   ACTIVITY_INFO = 'activity:info:',
-  RANK_INFO = 'rank:info:'
+  HOT_SALES = 'hot_sales_ranking',
+  PASSWORD_RESET = 'password_reset:',
+  REGISTRY_CODE = 'registry_code:',
 }

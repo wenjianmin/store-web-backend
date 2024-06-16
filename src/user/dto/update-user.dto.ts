@@ -14,9 +14,9 @@ export class UpdateUserDto {
   @IsOptional()
   email?: string
 
-  @IsBoolean({ message: '冻结状态必须为boolean类型'})
+  @IsNumber({}, { message: '冻结状态必须为number类型'})
   @IsOptional()
-  freezed?: boolean
+  freezed?: number
 
   @IsOptional()
   roleIds?: number[]

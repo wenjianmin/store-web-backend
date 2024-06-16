@@ -1,33 +1,58 @@
 # 接口和Content-Type不能换行
 @createdAt = {{$datetime iso8601}}
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqbWluIiwidXNlclR5cGUiOjEsImVtYWlsIjoiMTI1NjUyNzUwNkBxcS5jb20iLCJmcmVlemVkIjowLCJjcmVhdGVUaW1lIjoiMjAyNC0wMy0zMFQwNzoyODozMS42ODdaIiwiaWF0IjoxNzExNzgzNzIwLCJleHAiOjE3MTIzODg1MjB9.zrWfAkowwc_mu6H0mFxxQ6jDy2RuH1b4j7G8qZpVO0Q
 
-// 注册用户
+# 注册用户
 POST http://localhost:3333/sys/registry
 Content-Type: application/json
 
 {
-  "username": "jmin",
-  "password": "jmin",
-  "email": "jmin@example.com",
-  "code": 33
+  "username": "test",
+  "password": "test",
+  "confirmPassword": "test",
+  "email": "yc_micro_front@163.com",
+  "code": 384886
 }
 
 ###
-// 用户登录
+# 发送注册验证码
+GET http://localhost:3333/sys/sendEmailForRegistry?email=yc_micro_front@163.com
+Authorization: {{token}}
+
+
+###
+# 用户登录
 POST http://localhost:3333/sys/login
 Content-Type: application/json
 
 {
-  "username": "jmin",
-  "password": "jmin",
-  "code": 33
+  "username": "test",
+  "password": "test"
+}
+
+###
+# 发送找回密码验证码
+GET http://localhost:3333/sys/sendEmailForGorgot?email=yc_micro_front@163.com
+
+
+###
+# 找回密码
+POST http://localhost:3333/sys/forgot
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test2",
+  "confirmPassword": "test2",
+  "email": "yc_micro_front@163.com",
+  "code": 143495
 }
 
 ###
 
 // 查询用户
 GET http://localhost:3333/user/list?page=1&pageSize=10
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+Authorization: {{token}}
 
 
 ###
@@ -42,6 +67,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impta
   "username": "Minnie",
   "email": "Minie@example.com"
 }
+
+
+###
+
+// 修改密码
+POST  http://localhost:3333/sys/forgot
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "password": "jmin000",
+  "confirmPassword": "jmin000",
+  "email": "yc_micro_front@163.com",
+  "code": "211781"
+}
+
+
 
 ### 
 
@@ -75,3 +117,16 @@ GET   http://localhost:3333/permission/list
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
 
 
+###
+
+// 开单
+POST  http://localhost:3333/order/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqbWluIiwidXNlclR5cGUiOjEsImVtYWlsIjoiam1pbkBleGFtcGxlLmNvbSIsImZyZWV6ZWQiOmZhbHNlLCJjcmVhdGVUaW1lIjoiMjAyNC0wMy0yNlQxNToyMTozNS40NzlaIiwiaWF0IjoxNzExNzAxMzE3LCJleHAiOjE3MTIzMDYxMTd9.w36rbVoBm1jM0hdPIMpQSS7cYVpG7uunZGpnPw1Pw88
+
+{
+  "productList": [
+    { "name": "电饭煲2342xxx", "price": 0.1, "id": 1}
+  ],
+  "discount": 0.8
+}

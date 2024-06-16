@@ -16,4 +16,7 @@ export class RoleEntity {
 
   @UpdateDateColumn({ type: 'timestamp', comment: '更新时间' })
   updateTime: Date
+
+  @Column({ type: 'int', comment: '是否为系统内置 0 否 1 是', default: 0 })
+  isSystem: number
 }

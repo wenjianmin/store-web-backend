@@ -28,7 +28,7 @@ Response data: ${JSON.stringify(data)}
         this.logger.info(logFormat, 'Response ResponseInterceptor');
         return {
           data,
-          status: res.statusCode,
+          code: res.statusCode,
           success: true
         };
       }),

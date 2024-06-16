@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query } from '@
 import { RoleService } from './role.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
+import { RoleListDto } from './dto/role-list.dto';
 
 @Controller('role')
 export class RoleController {
@@ -15,8 +16,8 @@ export class RoleController {
 
   // 获取所有角色
   @Get('list')
-  getRoleList() {
-    return this.roleService.getRoleList();
+  getRoleList(@Query() roleListDto: RoleListDto) {
+    return this.roleService.getRoleList(roleListDto);
   }
 
   @Patch('edit')
@@ -24,7 +25,7 @@ export class RoleController {
     return this.roleService.update(updateRoleDto);
   }
 
-  @Delete(':id')
+  @Get('delete/:id')
   remove(@Param('id') id: string) {
     return this.roleService.remove(+id);
   }

@@ -1,9 +1,10 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 // 新增依赖
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
+import { UserEntity } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -21,9 +22,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: { id: number }) {
+  async validate(payload: UserEntity) {
     const user = await this.authService.validateUser(payload);
-    if (!user) throw new UnauthorizedException()
+    if (!user) {
+      throw new HttpException('账号不存在', HttpStatus.UNAUTHORIZED)
+    }
     
     return user;
   }

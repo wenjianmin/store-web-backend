@@ -31,7 +31,7 @@ export class RoleAuthGuard implements CanActivate {
     if (user.userType === UserType.ADMIN_USER) return true
 
     // 获取该用户所拥有的接口权限
-    const userApis = await this.permissionService.getPermApiList(user.id)
+    const userApis = await this.permissionService.getPermApiList(user)
     console.log('当前用户拥有的接口权限集：',userApis);
     
     const index = userApis.findIndex((route) => {
@@ -41,7 +41,7 @@ export class RoleAuthGuard implements CanActivate {
         const reqUrl = req.url.split('?')[0]
         console.log('当前请求URL：', reqUrl);
         
-        return !!pathToRegexp(route.path).exec(reqUrl)
+        return !!pathToRegexp(route.url).exec(reqUrl)
       }
       return false
     })

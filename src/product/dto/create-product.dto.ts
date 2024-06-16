@@ -7,8 +7,8 @@ export class CreateProductDto {
   name: string
 
   @IsNotEmpty({ message: '商品价格不能为空' })
-  @IsNumberString({}, { message: '请输入string类型的价格' })
-  price: string
+  @IsNumberString({}, { message: '请输入number类型的价格' })
+  price: number
 
   @IsOptional()
   desc?: string
