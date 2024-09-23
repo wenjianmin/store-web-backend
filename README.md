@@ -2,37 +2,18 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 介绍
 
-## Description
+本项目是`NestJS`技术图书 **《NestJS全栈开发解析：快速上手与实践》** 的实战项目，于**2024.9月**上线。
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+## 安装
 
 ```bash
 $ pnpm install
 ```
 
-## Running the app
+## 运行
 
 ```bash
 # development
@@ -50,7 +31,7 @@ $ pnpm start:prod
 3.项目中.http已经创建了一些接口测试案例，你可以直接使用。
 
 
-## Test
+## 运行测试
 
 ```bash
 # unit tests
@@ -63,22 +44,9 @@ $ pnpm test:e2e
 $ pnpm test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
 
 
-## Project Config
+## 项目配置及注意事项
 
 - class-transformer采用0.3.x版本，使用plainToClass|classToPlain方法操作对象或实体，
 不指定默认会安装0.5.x版本，这个版本废弃了前面两个api，使用plainToInstance|instanceToPlain代替，要想使用最新api，可能会报错缺少class-transformer/storage包，此时删除项目中@nestjs/types包即可
@@ -90,7 +58,7 @@ role-auth.guard.ts 用于验证用户接口权限
 
 JWTModule注册在user模块中，当然也可以注册到auth模块中统一管理，生成和验证access_token就在auth.service.ts中进行
 
-## Project Direction
+## 项目目录
 ``` text
 ├── README.md  
 ├── nest-cli.json  
@@ -172,7 +140,7 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 └── tsconfig.json  
 ```
 
-## Deploy
+## 部署
 
 如需部署到生产环境或Docker环境，需要区分各个服务地址，如Nest服务、Redis MySQL服务，它们在Docker和开发环境的host配置是不一样的，对应不同环境的.evn文件。
 
@@ -181,5 +149,18 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 在项目运行中有遇到任何问题，请直接与作者联系！
 需要加入交流群探讨学习，直接扫描下方二维码，如过期请添加作者WeChat！
 
-作者WeChat：![Alt text](image.png)
-项目交流群![Alt text](image-1.png)
+作者WeChat：
+
+<img src="image.png" alt="描述文本" width="200" height="auto">
+
+
+项目交流群：
+
+<img src="image-1.png" alt="描述文本" width="200" height="auto">
+
+## 支持作者
+
+
+图书购买链接：<a href="https://item.jd.com/14283389.html" target="blank">京东</a>
+
+图书购买链接：<a href="https://product.dangdang.com/29783482.html" target="blank">当当</a>
