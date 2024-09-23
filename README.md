@@ -176,3 +176,10 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 
 如需部署到生产环境或Docker环境，需要区分各个服务地址，如Nest服务、Redis MySQL服务，它们在Docker和开发环境的host配置是不一样的，对应不同环境的.evn文件。
 
+## 交流学习
+
+在项目运行中有遇到任何问题，请直接与作者联系！
+需要加入交流群探讨学习，直接扫描下方二维码，如过期请添加作者WeChat！
+
+作者WeChat：![Alt text](image.png)
+项目交流群![Alt text](image-1.png)

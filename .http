@@ -7,16 +7,16 @@ POST http://localhost:3332/api/sys/registry
 Content-Type: application/json
 
 {
-  "username": "test",
-  "password": "test",
-  "confirmPassword": "test",
-  "email": "yc_micro_front@163.com",
-  "code": 915006
+  "username": "aaa2",
+  "password": "aaa2",
+  "confirmPassword": "aaa2",
+  "email": "2342342342342342@qq.com",
+  "code": "261025"
 }
 
 ###
 # 发送注册验证码
-GET http://localhost:3332/api/sys/sendEmailForRegistry?email=yc_micro_front@163.com
+GET http://localhost:3332/api/sys/sendEmailForRegistry?email=2342342342342342@qq.com
 Authorization: {{token}}
 
 
