@@ -18,6 +18,7 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { ActivityModule } from './activity/activity.module';
 import { StaticModule } from './static.module';
+import { ExcelModule } from './common/excel/excel.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { StaticModule } from './static.module';
     ProductModule,
     OrderModule,
     ActivityModule,
+    ExcelModule,
   ],
   controllers: [AppController],
   providers: [
