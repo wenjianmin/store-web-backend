@@ -1,28 +1,28 @@
 # 接口和Content-Type不能换行
 @createdAt = {{$datetime iso8601}}
-@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqbWluIiwidXNlclR5cGUiOjEsImVtYWlsIjoiMTI1NjUyNzUwNkBxcS5jb20iLCJmcmVlemVkIjowLCJjcmVhdGVUaW1lIjoiMjAyNC0wMy0zMFQwNzoyODozMS42ODdaIiwiaWF0IjoxNzExNzgzNzIwLCJleHAiOjE3MTIzODg1MjB9.zrWfAkowwc_mu6H0mFxxQ6jDy2RuH1b4j7G8qZpVO0Q
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJuYW1lIjoidGVzdCIsInVzZXJUeXBlIjoxLCJlbWFpbCI6InljX21pY3JvX2Zyb250QDE2My5jb20iLCJmcmVlemVkIjowLCJhdmF0YXIiOiIiLCJkZXNjIjoiIiwiY3JlYXRlVGltZSI6IjIwMjQtMDktMjFUMDM6MDU6MDAuMDU1WiIsImlhdCI6MTcyNjg4NzkwNywiZXhwIjoxNzI3NDkyNzA3fQ.oyAYdK3jQgnfBgfuMGxeQqhfJHVo9exxZZ8NQf-l8qA
 
 # 注册用户
-POST http://localhost:3333/sys/registry
+POST http://localhost:3332/api/sys/registry
 Content-Type: application/json
 
 {
-  "username": "test",
-  "password": "test",
-  "confirmPassword": "test",
-  "email": "yc_micro_front@163.com",
-  "code": 384886
+  "username": "aaa2",
+  "password": "aaa2",
+  "confirmPassword": "aaa2",
+  "email": "2342342342342342@qq.com",
+  "code": "261025"
 }
 
 ###
 # 发送注册验证码
-GET http://localhost:3333/sys/sendEmailForRegistry?email=yc_micro_front@163.com
+GET http://localhost:3332/api/sys/sendEmailForRegistry?email=2342342342342342@qq.com
 Authorization: {{token}}
 
 
 ###
 # 用户登录
-POST http://localhost:3333/sys/login
+POST http://localhost:3332/api/sys/login
 Content-Type: application/json
 
 {
@@ -32,12 +32,12 @@ Content-Type: application/json
 
 ###
 # 发送找回密码验证码
-GET http://localhost:3333/sys/sendEmailForGorgot?email=yc_micro_front@163.com
+GET http://localhost:3332/api/sys/sendEmailForGorgot?email=yc_micro_front@163.com
 
 
 ###
 # 找回密码
-POST http://localhost:3333/sys/forgot
+POST http://localhost:3332/api/sys/forgot
 Content-Type: application/json
 
 {
@@ -51,16 +51,16 @@ Content-Type: application/json
 ###
 
 // 查询用户
-GET http://localhost:3333/user/list?page=1&pageSize=10
+GET http://localhost:3332/api/user/list?page=1&pageSize=10
 Authorization: {{token}}
 
 
 ###
 
 // 更新用户
-PATCH http://localhost:3333/user/edit
+PATCH http://localhost:3332/api/user/edit
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+Authorization: {{token}}
 
 {
   "id": 4,
@@ -72,7 +72,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impta
 ###
 
 // 修改密码
-POST  http://localhost:3333/sys/forgot
+POST  http://localhost:3332/api/sys/forgot
 Content-Type: application/json
 Authorization: {{token}}
 
@@ -88,13 +88,13 @@ Authorization: {{token}}
 ### 
 
 // 删除用户
-DELETE http://localhost:3333/user/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6MSwiaWF0IjoxNzExNDY2NDk4LCJleHAiOjE3MTIwNzEyOTh9.iL8aE-aktWr95X2ApALjJ6P52ZTcHXLMl-Md5JQs45g
+DELETE http://localhost:3332/api/user/4
+Authorization: {{token}}
 
 ###
 // 创建角色
-POST http://localhost:3333/role/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+POST http://localhost:3332/api/role/create
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -106,23 +106,23 @@ Content-Type: application/json
 
 ###
 // 删除角色
-DELETE  http://localhost:3333/role/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+DELETE  http://localhost:3332/api/role/2
+Authorization: {{token}}
 
 
 
 ###
 // 获取用户功能权限列表
-GET   http://localhost:3333/permission/list
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImptaW4iLCJpZCI6NSwiaWF0IjoxNzExMDkwMDUzLCJleHAiOjE3MTE2OTQ4NTN9.8jd1_HNWanAFgGdfvox5pvEzbCWIV52JyTK1mR65PA4
+GET   http://localhost:3332/api/permission/list
+Authorization: {{token}}
 
 
 ###
 
 // 开单
-POST  http://localhost:3333/order/create
+POST  http://localhost:3332/api/order/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqbWluIiwidXNlclR5cGUiOjEsImVtYWlsIjoiam1pbkBleGFtcGxlLmNvbSIsImZyZWV6ZWQiOmZhbHNlLCJjcmVhdGVUaW1lIjoiMjAyNC0wMy0yNlQxNToyMTozNS40NzlaIiwiaWF0IjoxNzExNzAxMzE3LCJleHAiOjE3MTIzMDYxMTd9.w36rbVoBm1jM0hdPIMpQSS7cYVpG7uunZGpnPw1Pw88
+Authorization: {{token}}
 
 {
   "productList": [

@@ -2,48 +2,51 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-## Installation
+## 介绍
+
+本项目是`NestJS`技术图书 **《NestJS全栈开发解析：快速上手与实践》** 的实战项目，于**2024.9月**上线。
+
+## 安装
 
 ```bash
 $ pnpm install
 ```
 
-## Running the app
+## 运行
 
 ```bash
 # development
-$ pnpm run start
+$ pnpm start
 
 # watch mode
-$ pnpm run start:dev
+$ pnpm start:dev
 
 # production mode
-$ pnpm run start:prod
+$ pnpm start:prod
 ```
+> 注意：
+1.由于项目中权限是环环相扣，如果你使用Postman等接口调试工具，大部分接口需要有access_token验证，意味着需要登录，登录前需要注册，注册需要获取验证，这些都可以在日志中看到。
+2.除此之外，注册之后还不能调用某些接口，因为当前用户的权限集需要分配，你可以往db中添加数据，或者直接导入`sql`目录下的`store_web_project.sql`到db中。
+3.项目中.http已经创建了一些接口测试案例，你可以直接使用。
 
-## Test
+
+## 运行测试
 
 ```bash
 # unit tests
-$ pnpm run test
+$ pnpm test
 
 # e2e tests
-$ pnpm run test:e2e
+$ pnpm test:e2e
 
 # test coverage
-$ pnpm run test:cov
+$ pnpm test:cov
 ```
 
 
-## License
 
-Nest is [MIT licensed](LICENSE).
-
-
-## 项目依赖配置
+## 项目配置及注意事项
 
 - class-transformer采用0.3.x版本，使用plainToClass|classToPlain方法操作对象或实体，
 不指定默认会安装0.5.x版本，这个版本废弃了前面两个api，使用plainToInstance|instanceToPlain代替，要想使用最新api，可能会报错缺少class-transformer/storage包，此时删除项目中@nestjs/types包即可
@@ -55,7 +58,7 @@ role-auth.guard.ts 用于验证用户接口权限
 
 JWTModule注册在user模块中，当然也可以注册到auth模块中统一管理，生成和验证access_token就在auth.service.ts中进行
 
-## 项目目录架构
+## 项目目录
 ``` text
 ├── README.md  
 ├── nest-cli.json  
@@ -137,9 +140,27 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 └── tsconfig.json  
 ```
 
+## 部署
+
+如需部署到生产环境或Docker环境，需要区分各个服务地址，如Nest服务、Redis MySQL服务，它们在Docker和开发环境的host配置是不一样的，对应不同环境的.evn文件。
+
+## 交流学习
+
+在项目运行中有遇到任何问题，请直接与作者联系！
+需要加入交流群探讨学习，直接扫描下方二维码，如过期请添加作者WeChat！
+
+作者WeChat：
+
+<img src="image.png" alt="描述文本" width="200" height="auto">
 
 
+项目交流群：
 
-需要区分Redis MySQL的Docker和开发环境的host配置
-nest项目端口配置区分
-mysql 3306端口区分
+<img src="image-1.png" alt="描述文本" width="200" height="auto">
+
+## 支持作者
+
+
+图书购买链接：<a href="https://item.jd.com/14283389.html" target="blank">京东</a>
+
+图书购买链接：<a href="https://product.dangdang.com/29783482.html" target="blank">当当</a>
