@@ -8,13 +8,13 @@ export interface ColunmDto {
 }
 @Injectable()
 export class ExcelService {
-  async importExcel<T>(file: Express.Multer.File): Promise<T> {
+  async importExcel(file: Express.Multer.File): Promise<Record<string, string | number>[]> {
     const workBook: Workbook = new Workbook()
-    const sheet = workBook.getWorksheet(1)
-    await workBook.xlsx.read(file.stream)
+    await workBook.xlsx.load(file.buffer)
 
+    const sheet = workBook.worksheets[0]
     const headers: string[] = [];
-    const data: T = Object.create(null);
+    const data = [];
     sheet.eachRow((row, rowNumber) => {
       if (rowNumber === 1) {
         // 假设第一行是标题行，我们将其存储起来用于映射
@@ -22,10 +22,12 @@ export class ExcelService {
           headers.push(cell.value.toString());
         });
       } else {
+        const obj = {};
         // 不是标题行
         row.eachCell((cell, colNumber) => {
-          data[headers[colNumber - 1]] = cell.value;
+          obj[headers[colNumber - 1]] = cell.value;
         });
+        data.push(obj);
       }
     });
     return data;

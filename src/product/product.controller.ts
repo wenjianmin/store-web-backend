@@ -9,6 +9,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  HttpStatus,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -18,6 +19,7 @@ import { HotSalesService } from './hot-sales.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ExcelService } from 'src/common/excel/excel.service';
 import { Response } from 'express';
+import { AllowNoToken } from 'src/common/decorators/token.decorator';
 
 @Controller('product')
 export class ProductController {
@@ -63,7 +65,7 @@ export class ProductController {
   @UseInterceptors(FileInterceptor('file'))
   async importProducts(@UploadedFile() file: Express.Multer.File) {
     const data = await this.excelService.importExcel(file);
-    console.log(data);
+    await this.productService.importProducts(data);
     return {
       message: '上传成功',
       file: file.filename,
@@ -71,25 +73,25 @@ export class ProductController {
     };
   }
 
-  @Post('export')
+  @Get('export')
+  @AllowNoToken()
   async exportProducts(@Res() res: Response) {
     // 定义列
     const columns = [
       { header: 'ID', key: 'id', width: 10 },
       { header: 'Name', key: 'name', width: 32 },
-      { header: 'Email', key: 'email', width: 32 },
+      { header: 'Price', key: 'price', width: 32 },
+      { header: 'Desc', key: 'desc', width: 32 },
+      { header: 'CreateTime', key: 'createTime', width: 32 },
     ];
 
     // 查询数据库或获取数据
-    const data = [
-      { id: 1, name: 'John Doe', email: 'john@example.com' },
-      { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
-    ];
+    const { list } = await this.productService.getProductList()
     // 导出数据到Excel
-    const buffer = await this.excelService.exportExcel(columns, data, '产品');
+    const buffer = await this.excelService.exportExcel(columns, list, '产品');
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', 'attachment; filename="users.xlsx"');
+    res.setHeader('Content-Disposition', 'attachment; filename="产品数据.xlsx"');
 
     return res.send(buffer);
   }

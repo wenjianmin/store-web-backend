@@ -23,6 +23,12 @@
               "${workspaceFolder}/**/*.js"
           ]
       },
+      {
+        "command": "npm run start:debug",
+        "name": "Development server",
+        "request": "launch",
+        "type": "node-terminal"
+      }
       
   ]
 }

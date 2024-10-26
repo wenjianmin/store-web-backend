@@ -17,7 +17,7 @@ export class ProductEntity {
   @Column({ type: 'text',  comment: '商品描述' })
   desc: string
 
-  @Column({ type: 'int', comment: '商品状态 0 未上架  1 已上架 2 已下架'})
+  @Column({ type: 'int', default: 0, comment: '商品状态 0 未上架  1 已上架 2 已下架'})
   status: number
 
   @CreateDateColumn({ type: 'datetime', comment: '创建时间'})

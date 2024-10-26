@@ -41,7 +41,7 @@ export class RoleAuthGuard implements CanActivate {
         const reqUrl = req.url.split('?')[0]
         console.log('当前请求URL：', reqUrl);
         
-        return !!pathToRegexp(route.url).exec(reqUrl)
+        return !!pathToRegexp(route.url).exec(reqUrl.replace('/api', ''))
       }
       return false
     })

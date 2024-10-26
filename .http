@@ -3,20 +3,20 @@
 @token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJuYW1lIjoidGVzdCIsInVzZXJUeXBlIjoxLCJlbWFpbCI6InljX21pY3JvX2Zyb250QDE2My5jb20iLCJmcmVlemVkIjowLCJhdmF0YXIiOiIiLCJkZXNjIjoiIiwiY3JlYXRlVGltZSI6IjIwMjQtMDktMjFUMDM6MDU6MDAuMDU1WiIsImlhdCI6MTcyNjg4NzkwNywiZXhwIjoxNzI3NDkyNzA3fQ.oyAYdK3jQgnfBgfuMGxeQqhfJHVo9exxZZ8NQf-l8qA
 
 # 注册用户
-POST http://localhost:3332/api/sys/registry
+POST http://localhost:3332/sys/registry
 Content-Type: application/json
 
 {
-  "username": "aaa2",
-  "password": "aaa2",
-  "confirmPassword": "aaa2",
-  "email": "2342342342342342@qq.com",
-  "code": "261025"
+  "username": "test1",
+  "password": "a123456",
+  "confirmPassword": "a123456",
+  "email": "jmin95@163.com",
+  "code": 599485
 }
 
 ###
 # 发送注册验证码
-GET http://localhost:3332/api/sys/sendEmailForRegistry?email=2342342342342342@qq.com
+GET http://localhost:3332/sys/sendEmailForRegistry?email=jmin95@163.com
 Authorization: {{token}}
 
 

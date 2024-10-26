@@ -32,17 +32,19 @@ export class ProductService {
    * @param productListDto 产品列表DTO
    * @returns 返回产品列表和总数
    */
-  async getProductList(productListDto: ProductListDto) {
-    const { name, status, page, pageSize } = productListDto
+  async getProductList(productListDto?: ProductListDto): Promise<{ list: ProductEntity[], total: number }> {
+    const { name, status, page, pageSize } = productListDto || {}
     const where = {
       ...(name ? { name: Like(`%${name}%`) } : null),
       ...(status ? { status } : null),
     }
+    const pagination = {
+      ...(page && pageSize ? { skip: (page - 1) * pageSize, take: pageSize } : null)
+    }
     const [list, total] = await this.productRepository.findAndCount({
       where,
       order: { id: 'DESC' },
-      skip: pageSize * (page - 1),
-      take: pageSize,
+      ...pagination
     });
     return {
       list,
@@ -112,5 +114,14 @@ export class ProductService {
       throw new HttpException(`${text}失败，请稍后重试`, HttpStatus.EXPECTATION_FAILED)
     }
     return `${text}成功`;
+  }
+
+  async importProducts(data: unknown[]) {
+    const entities = data.map((item: any) => {
+      const entity = new ProductEntity()
+      Object.assign(entity, item)
+      return entity
+    })
+    return this.productRepository.save(entities)
   }
 }
