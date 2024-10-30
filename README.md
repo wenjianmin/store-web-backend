@@ -15,6 +15,8 @@ $ pnpm install
 
 ## 运行
 
+运行项目之前，首先确保本机安装了MySQL数据库，并创建名为`store_web_project`的数据库，同时在`.env`文件中配置好数据库连接信息。其次，需要安装并启动Redis数据库。
+
 ```bash
 # development
 $ pnpm start
@@ -147,6 +149,7 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 ## 交流学习
 
 在项目运行中有遇到任何问题，请直接与作者联系！
+
 需要加入交流群探讨学习，直接扫描下方二维码，如过期请添加作者WeChat！
 
 作者WeChat：
@@ -164,3 +167,7 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 图书购买链接：<a href="https://item.jd.com/14283389.html" target="blank">京东</a>
 
 图书购买链接：<a href="https://product.dangdang.com/29783482.html" target="blank">当当</a>
+
+## 更新日志
+
+- 2024.10.26 新增Excel导入导出服务，支持Excel导入产品数据到db，导出db数据到Excel。
