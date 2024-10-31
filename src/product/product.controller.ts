@@ -69,7 +69,7 @@ export class ProductController {
     return {
       message: '上传成功',
       file: file.filename,
-      data
+      data,
     };
   }
 
@@ -86,14 +86,19 @@ export class ProductController {
     ];
 
     // 查询数据库或获取数据
-    const { list } = await this.productService.getProductList()
+    const { list } = await this.productService.getProductList();
     // 导出数据到Excel
     const buffer = await this.excelService.exportExcel(columns, list, '产品');
 
-    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', 'attachment; filename="产品数据.xlsx"');
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename="产品数据.xlsx"',
+    );
 
     return res.send(buffer);
   }
-  
 }

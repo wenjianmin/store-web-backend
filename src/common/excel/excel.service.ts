@@ -8,11 +8,13 @@ export interface ColunmDto {
 }
 @Injectable()
 export class ExcelService {
-  async importExcel(file: Express.Multer.File): Promise<Record<string, string | number>[]> {
-    const workBook: Workbook = new Workbook()
-    await workBook.xlsx.load(file.buffer)
+  async importExcel(
+    file: Express.Multer.File,
+  ): Promise<Record<string, string | number>[]> {
+    const workBook: Workbook = new Workbook();
+    await workBook.xlsx.load(file.buffer);
 
-    const sheet = workBook.worksheets[0]
+    const sheet = workBook.worksheets[0];
     const headers: string[] = [];
     const data = [];
     sheet.eachRow((row, rowNumber) => {
@@ -35,11 +37,11 @@ export class ExcelService {
 
   async exportExcel(colunms: ColunmDto[], data: unknown[], sheetName: string) {
     const workBook = new Workbook();
-    const sheet = workBook.addWorksheet(sheetName)
+    const sheet = workBook.addWorksheet(sheetName);
     sheet.columns = colunms;
     data.forEach((row) => {
       sheet.addRow(row);
-    })
-    return await workBook.xlsx.writeBuffer(); 
+    });
+    return await workBook.xlsx.writeBuffer();
   }
 }
