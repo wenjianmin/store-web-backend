@@ -78,11 +78,11 @@ export class ProductController {
   async exportProducts(@Res() res: Response) {
     // 定义列
     const columns = [
-      { header: 'ID', key: 'id', width: 10 },
-      { header: 'Name', key: 'name', width: 32 },
-      { header: 'Price', key: 'price', width: 32 },
-      { header: 'Desc', key: 'desc', width: 32 },
-      { header: 'CreateTime', key: 'createTime', width: 32 },
+      { header: 'id', key: 'id', width: 10 },
+      { header: 'name', key: 'name', width: 32 },
+      { header: 'price', key: 'price', width: 32 },
+      { header: 'desc', key: 'desc', width: 32 },
+      { header: 'createTime', key: 'createTime', width: 32 },
     ];
 
     // 查询数据库或获取数据
@@ -96,7 +96,7 @@ export class ProductController {
     );
     res.setHeader(
       'Content-Disposition',
-      'attachment; filename="产品数据.xlsx"',
+      `attachment; filename*=UTF-8''${encodeURIComponent('产品数据.xlsx')}`,
     );
 
     return res.send(buffer);

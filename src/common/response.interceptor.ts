@@ -22,7 +22,7 @@ export class ResponseInterceptor implements NestInterceptor {
 Request original url: ${req.originalUrl}
 Method: ${req.method}
 IP: ${req.ip}
-Response data: ${JSON.stringify(data)}
+Response data: ${data.socket ? null : JSON.stringify(data)}
 ##############################################################################################################
 `;
         this.logger.info(logFormat, 'Response ResponseInterceptor');
