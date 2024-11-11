@@ -20,6 +20,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ExcelService } from 'src/common/excel/excel.service';
 import { Response } from 'express';
 import { AllowNoToken } from 'src/common/decorators/token.decorator';
+import { FileLoggingInterceptor } from 'src/common/file.interceptor';
 
 @Controller('product')
 export class ProductController {
@@ -62,7 +63,7 @@ export class ProductController {
     );
   }
   @Post('import')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('file'), FileLoggingInterceptor)
   async importProducts(@UploadedFile() file: Express.Multer.File) {
     const data = await this.excelService.importExcel(file);
     await this.productService.importProducts(data);

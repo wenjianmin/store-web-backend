@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@crawlee/playwright": "^3.11.0",
     "@nestjs-modules/mailer": "^1.11.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.0",
@@ -50,6 +51,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.20",
+    "playwright": "^1.45.2",
+    "cheerio": "1.0.0-rc.12",
     "winston": "^3.12.0",
     "winston-daily-rotate-file": "^5.0.0"
   },

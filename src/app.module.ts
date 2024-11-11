@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { SysModule } from './sys/sys.module';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './common/logger.middleware';
 import { LoggerModule } from './common/logger/logger.module';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
@@ -19,6 +19,7 @@ import { OrderModule } from './order/order.module';
 import { ActivityModule } from './activity/activity.module';
 import { StaticModule } from './static.module';
 import { ExcelModule } from './common/excel/excel.module';
+import { CrawlerModule } from 'src/common/crawler/crawler.module';
 
 @Module({
   imports: [
@@ -40,12 +41,17 @@ import { ExcelModule } from './common/excel/excel.module';
           charset: 'utf8mb4',
           autoLoadEntities: true,
           // 生产环境中禁止开启，应该使用数据迁移
-          synchronize: true
-        }
-      }
+          synchronize: true,
+        };
+      },
     }),
     ConfigModule.forRoot({
-      envFilePath: process.env.NODE_ENV === 'docker' ? '.env.docker' : process.env.NODE_ENV === 'production' ? '.env.production' : '.env',
+      envFilePath:
+        process.env.NODE_ENV === 'docker'
+          ? '.env.docker'
+          : process.env.NODE_ENV === 'production'
+          ? '.env.production'
+          : '.env',
       isGlobal: true,
     }),
     RoleModule,
@@ -54,6 +60,7 @@ import { ExcelModule } from './common/excel/excel.module';
     OrderModule,
     ActivityModule,
     ExcelModule,
+    CrawlerModule,
   ],
   controllers: [AppController],
   providers: [
@@ -80,8 +87,8 @@ import { ExcelModule } from './common/excel/excel.module';
     },
   ],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*')
+    consumer.apply(LoggerMiddleware).forRoutes('*');
   }
 }

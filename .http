@@ -130,3 +130,6 @@ Authorization: {{token}}
   ],
   "discount": 0.8
 }
+
+###
+GET http://localhost:3332/api/crawler/analysis-url?url=https://item.jd.com/14283389.html
