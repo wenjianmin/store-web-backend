@@ -173,8 +173,15 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 - 2024.10.26 新增Excel导入导出服务，支持Excel导入产品数据到db，导出db数据到Excel。
 - 2024.11.10 新增爬虫服务，支持自定义爬虫内容、自动反爬等功能。
 
-## 最新文章 & 专栏
+## 最新 NestJS 文章 & 专栏
+- <a href="https://juejin.cn/column/7287914116285677603" target="blank"> Nest系列专栏 </a>
 - <a href="https://juejin.cn/post/7442705410790965248" target="blank">NestJS全栈进阶指南</a>
 - <a href="https://juejin.cn/post/7434869636506435624" target="blank"> NestJS实现通用爬虫服务</a>
 - <a href="https://juejin.cn/post/7431476378450542626" target="blank"> NestJS实现Excel导入导出服务</a>
-- <a href="https://juejin.cn/column/7287914116285677603" target="blank"> Nest系列专栏 </a>
+
+## 前端领域
+- <a href="https://juejin.cn/column/7283768998777045051" target="blank"> 前端专栏 </a>
+
+## 人生踩坑 & 感悟专栏 
+- <a href="https://juejin.cn/column/7283776161527545893" target="blank"> 星光不问赶路人 </a>
+
