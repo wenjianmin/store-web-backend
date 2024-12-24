@@ -168,6 +168,13 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 
 图书购买链接：<a href="https://product.dangdang.com/29783482.html" target="blank">当当</a>
 
+## 图书勘误
+事实证明，群众的眼睛总是雪亮的。即使经过笔者和编辑人员重复的审查，但错误总是无法完全避免，通过读者反馈，我们收集了书籍中存在可纠正的几点问题：
+
+- 章节2.2.1 Nest CLI的安装：`npm install -g @Nestjs/cli` 及 `npm update -g @Nestjs/cli` 命令中，cli的包名应为小写的`@nestjs/cli`
+- 章节3.4.1 类中间件：`我们指定中间件应用在/person路径` 应为 `我们指定中间件应用在/user路径`
+- 章节4.1.3 可视化操作MySQL：`接着来设计product表，新增updateTime（创建时间）` 应为 `接着来设计product表，新增updateTime（更新时间）`
+
 ## 更新日志
 
 - 2024.10.26 新增Excel导入导出服务，支持Excel导入产品数据到db，导出db数据到Excel。
