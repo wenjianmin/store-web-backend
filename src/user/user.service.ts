@@ -96,6 +96,18 @@ export class UserService {
     // 4. 缓存用户信息
     const redisKey = getRedisKey(RedisKeyPrefix.USER_INFO, rest.id);
     await this.redisService.hSet(redisKey, rest);
+    // 5. 分配当前用户默认权限
+    const defaultRole = await this.dataSource
+      .createQueryBuilder(RoleEntity, 'role')
+      .where('role.name = :name', { name: '服务员' })
+      .getOne();
+    if (defaultRole) {
+      // 操作
+      await this.userRoleRepository.save({
+        userId: rest.id,
+        roleId: defaultRole.id,
+      });
+    }
     return rest;
   }
 

@@ -1,11 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, Put, Inject } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  Req,
+  Put,
+  Inject,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserListDto } from './dto/user-list.dto';
+import { AllowNoToken } from 'src/common/decorators/token.decorator';
 
 @Controller('user')
 export class UserController {
-  
   constructor(private readonly userService: UserService) {}
 
   @Get('list')
@@ -73,15 +85,19 @@ export class UserController {
    * @returns 返回更新结果
    */
   updateFreezedStatus(@Body() dto: UpdateUserDto, @Req() req) {
-    return this.userService.updateFreezedStatus(dto.id, dto.freezed, req.user.id);
+    return this.userService.updateFreezedStatus(
+      dto.id,
+      dto.freezed,
+      req.user.id,
+    );
   }
 
   /**
    * @deprecated
-   * @param query 
+   * @param query
    */
   @Get('sendMail')
   async sendMailForRegistry(@Query() query: { email: string }) {
-    await this.userService.sendCode(query.email)
+    await this.userService.sendCode(query.email);
   }
 }
