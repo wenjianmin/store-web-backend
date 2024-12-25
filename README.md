@@ -166,6 +166,9 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 
 <img src="image.png" alt="描述文本" width="200" height="auto">
 
+作者公众号：
+
+<img src="qrcode_for_gh_c002022f8eda_258.jpg" alt="描述文本" width="200" height="auto">
 
 项目交流群：
 
@@ -195,6 +198,7 @@ JWTModule注册在user模块中，当然也可以注册到auth模块中统一管
 - <a href="https://juejin.cn/post/7442705410790965248" target="blank">NestJS全栈进阶指南</a>
 - <a href="https://juejin.cn/post/7434869636506435624" target="blank"> NestJS实现通用爬虫服务</a>
 - <a href="https://juejin.cn/post/7431476378450542626" target="blank"> NestJS实现Excel导入导出服务</a>
+- <a href="https://juejin.cn/post/7444863675041726473" target="blank"> 9个NestJS企业级自定义装饰器，你知道几个？</a>
 
 ## 前端领域
 - <a href="https://juejin.cn/column/7283768998777045051" target="blank"> 前端专栏 </a>
